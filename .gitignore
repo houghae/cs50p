@@ -1,2 +1,7 @@
-.venv
+#.venv
+#venv/
+#project/venv
 
+venv/
+project/venv/
+project/.venv/
