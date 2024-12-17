@@ -1,10 +1,13 @@
 import yfinance as yf
+import pandas as pd
 import time
 
 def main():
-    filters = user_query()
-    tickers = stock_screener(filters)
-    print(f"Selected tickers: {tickers}")
+    #filters = user_query()
+    #tickers = stock_screener(filters)
+    #print(f"Selected tickers: {tickers}")
+    get_user_tickers()
+
 
 def user_query():
     # Welcome the user
@@ -28,15 +31,23 @@ def stock_screener(filters):
 
 
 
-def get_data():
-    tickers = yf.Tickers("AAPL MSFT AMZN QQQ NVDA")
-    history = tickers.tickers["AAPL"].history(period="1yr", interval="1d")
+def get_data(tickers, period, interval):
+    for ticker in get_user_tickers:
+        yf.Ticker(ticker)
+    #history = tickers.tickers[].history(period=period, interval=interval)
+    
 
 
 
-def function_n():
-    ...
+def get_user_tickers():
+    user_tickers = input("Enter the tickers you'd like to research. Seperate each with a comma:\n")
+    return [ticker.strip().upper() for ticker in user_tickers.split(",")]
 
+
+def get_user_timeframe():
+    user_period = input("What history period would you like to look at?\nYou can enter 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max:\n")
+    user_interval = input("What interval would you like your chart?\nYou can enter 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo\n")
+    return user_period, user_interval
 
 if __name__ == "__main__":
     main()
